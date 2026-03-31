@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 
+// Middleware para servir archivos estáticos desde la carpeta 'public'
+app.use(express.static('public'));
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,4 +23,4 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en el puerto ${PORT}`);
-}); 
+});

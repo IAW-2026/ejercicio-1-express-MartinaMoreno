@@ -13,5 +13,18 @@
   "engines": {
     "node": ">=22.0.0"
   },
-  "packageManager": "pnpm@10.12.1"
-} 
+  "packageManager": "pnpm@10.12.1",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IAW-2026/ejercicio-1-express-MartinaMoreno.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/IAW-2026/ejercicio-1-express-MartinaMoreno/issues"
+  },
+  "homepage": "https://github.com/IAW-2026/ejercicio-1-express-MartinaMoreno#readme"
+}
