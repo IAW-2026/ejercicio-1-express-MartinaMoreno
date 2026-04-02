@@ -83,6 +83,11 @@ app.get('/frases', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'frases.html'));
 });
 
+// Ruta /saludo (sirve la página HTML)
+app.get('/saludo', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'saludo.html'));
+});
+
 // Ruta API /api/contacto (procesa POST con fetch)
 app.post('/api/contacto', (req, res) => {
   const { nombre, mensaje } = req.body;
@@ -91,6 +96,18 @@ app.post('/api/contacto', (req, res) => {
   }
   const respuesta = {
     mensaje: `Gracias, ${nombre}. Hemos recibido tu mensaje: "${mensaje}". Te responderemos pronto.`
+  };
+  res.json(respuesta);
+});
+
+// Ruta API /api/saludo (procesa POST con fetch)
+app.post('/api/saludo', (req, res) => {
+  const { nombre } = req.body;
+  if (!nombre) {
+    return res.status(400).json({ error: 'Nombre es requerido' });
+  }
+  const respuesta = {
+    saludo: `¡Hola ${nombre}! Bienvenido a nuestro sitio.`
   };
   res.json(respuesta);
 });
