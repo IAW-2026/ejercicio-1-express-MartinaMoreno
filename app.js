@@ -5,6 +5,9 @@ const app = express();
 // Variable en memoria para el contador de visitas
 let contador = 0;
 
+// Array en memoria para almacenar mensajes
+let mensajes = [];
+
 // Motor de vistas (EJS)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -47,6 +50,20 @@ app.get('/encuesta', (req, res) => {
 app.post('/encuesta', (req, res) => {
   const { lenguaje } = req.body;
   res.render('encuesta-resultado', { title: 'Resultado Encuesta', lenguaje });
+});
+
+// Ruta /mensajes (GET: mostrar formulario y mensajes acumulados)
+app.get('/mensajes', (req, res) => {
+  res.render('mensajes', { title: 'Mensajes', mensajes });
+});
+
+// Ruta /mensajes (POST: agregar mensaje)
+app.post('/mensajes', (req, res) => {
+  const { mensaje } = req.body;
+  if (mensaje) {
+    mensajes.push(mensaje);
+  }
+  res.redirect('/mensajes');
 });
 
 // Middleware básico para manejo de errores
