@@ -12,7 +12,7 @@
     <li>Email: ejemplo@email.com</li>
     <li>Teléfono: 123-456-7890</li>
   </ul>
-  <form action="/contacto" method="POST">
+  <form id="contacto-form">
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required><br><br>
 
@@ -21,6 +21,8 @@
 
     <button type="submit">Enviar</button>
   </form>
+
+  <div id="respuesta" style="display: none; margin-top: 20px; padding: 10px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px;"></div>
   <nav>
     <a href="/">Inicio</a> |
     <a href="/acerca">Acerca de</a> |
@@ -28,5 +30,46 @@
     <a href="/mensajes">Mensajes</a> |
     <a href="/productos">Productos</a>
   </nav>
+
+  <script>
+    // Función para enviar el formulario con fetch
+    async function enviarContacto(event) {
+      event.preventDefault(); // Evita el envío normal del formulario
+
+      const nombre = document.getElementById('nombre').value;
+      const mensaje = document.getElementById('mensaje').value;
+
+      try {
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nombre, mensaje })
+        });
+
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+
+        const data = await response.json();
+        mostrarRespuesta(data.mensaje);
+      } catch (error) {
+        mostrarRespuesta('Error: ' + error.message);
+      }
+    }
+
+    // Función para mostrar la respuesta en la página
+    function mostrarRespuesta(mensaje) {
+      const respuestaDiv = document.getElementById('respuesta');
+      respuestaDiv.textContent = mensaje;
+      respuestaDiv.style.display = 'block';
+      // Limpiar el formulario
+      document.getElementById('contacto-form').reset();
+    }
+
+    // Asignar el evento al formulario
+    document.getElementById('contacto-form').addEventListener('submit', enviarContacto);
+  </script>
 </body>
 </html>

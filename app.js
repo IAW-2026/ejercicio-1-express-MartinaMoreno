@@ -35,12 +35,6 @@ app.get('/contacto', (req, res) => {
   res.render('contacto', { title: 'Contacto' });
 });
 
-// Ruta POST para /contacto (manejar el formulario)
-app.post('/contacto', (req, res) => {
-  const { nombre, mensaje } = req.body;
-  res.render('resultado', { title: 'Contacto - Enviado', nombre, mensaje });
-});
-
 // Ruta /encuesta (GET: mostrar formulario)
 app.get('/encuesta', (req, res) => {
   res.render('encuesta', { title: 'Encuesta' });
@@ -80,6 +74,18 @@ app.get('/api/productos', (req, res) => {
 // Ruta /productos (sirve la página HTML)
 app.get('/productos', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'productos.html'));
+});
+
+// Ruta API /api/contacto (procesa POST con fetch)
+app.post('/api/contacto', (req, res) => {
+  const { nombre, mensaje } = req.body;
+  if (!nombre || !mensaje) {
+    return res.status(400).json({ error: 'Nombre y mensaje son requeridos' });
+  }
+  const respuesta = {
+    mensaje: `Gracias, ${nombre}. Hemos recibido tu mensaje: "${mensaje}". Te responderemos pronto.`
+  };
+  res.json(respuesta);
 });
 
 // Middleware básico para manejo de errores
