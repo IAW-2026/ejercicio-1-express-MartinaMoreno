@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos</title>
+    <link rel="stylesheet" href="/styles/productos.css">
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <div id="productos-container">
+        <p>Cargando productos...</p>
+    </div>
+
+    <nav>
+        <a href="/">Inicio</a> |
+        <a href="/acerca">Acerca de</a> |
+        <a href="/contacto">Contacto</a> |
+        <a href="/encuesta">Encuesta</a> |
+        <a href="/mensajes">Mensajes</a>
+    </nav>
+
+    <script>
+        // Función para obtener y mostrar productos
+        async function cargarProductos() {
+            try {
+                const response = await fetch('/api/productos');
+                if (!response.ok) {
+                    throw new Error('Error al obtener productos');
+                }
+                const productos = await response.json();
+                mostrarProductos(productos);
+            } catch (error) {
+                document.getElementById('productos-container').innerHTML = '<p>Error al cargar productos: ' + error.message + '</p>';
+            }
+        }
+
+        // Función para mostrar productos en el DOM
+        function mostrarProductos(productos) {
+            const container = document.getElementById('productos-container');
+            if (productos.length === 0) {
+                container.innerHTML = '<p>No hay productos disponibles.</p>';
+                return;
+            }
+
+            let html = '<div class="productos-grid">';
+            productos.forEach(producto => {
+                html += `
+                    <div class="producto-card">
+                        <h3>${producto.nombre}</h3>
+                        <p class="precio">Precio: $${producto.precio}</p>
+                        <p class="descripcion">${producto.descripcion}</p>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Cargar productos al cargar la página
+        window.onload = cargarProductos;
+    </script>
+</body>
+</html>

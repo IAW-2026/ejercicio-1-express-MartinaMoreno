@@ -66,6 +66,22 @@ app.post('/mensajes', (req, res) => {
   res.redirect('/mensajes');
 });
 
+// Ruta API /api/productos (devuelve JSON)
+app.get('/api/productos', (req, res) => {
+  const productos = [
+    { id: 1, nombre: 'Laptop', precio: 1200, descripcion: 'Laptop potente para trabajo' },
+    { id: 2, nombre: 'Mouse', precio: 25, descripcion: 'Mouse inalámbrico ergonómico' },
+    { id: 3, nombre: 'Teclado', precio: 80, descripcion: 'Teclado mecánico RGB' },
+    { id: 4, nombre: 'Monitor', precio: 300, descripcion: 'Monitor 4K de 27 pulgadas' }
+  ];
+  res.json(productos);
+});
+
+// Ruta /productos (sirve la página HTML)
+app.get('/productos', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'productos.html'));
+});
+
 // Middleware básico para manejo de errores
 app.use((err, req, res, next) => {
   console.error(err.stack);
