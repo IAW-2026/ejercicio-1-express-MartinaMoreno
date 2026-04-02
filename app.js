@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const { getRandomFrase } = require('./frases');
+
 const app = express();
 
 // Variable en memoria para el contador de visitas
@@ -76,6 +78,11 @@ app.get('/productos', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'productos.html'));
 });
 
+// Ruta /frases (sirve la página HTML)
+app.get('/frases', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'frases.html'));
+});
+
 // Ruta API /api/contacto (procesa POST con fetch)
 app.post('/api/contacto', (req, res) => {
   const { nombre, mensaje } = req.body;
@@ -86,6 +93,12 @@ app.post('/api/contacto', (req, res) => {
     mensaje: `Gracias, ${nombre}. Hemos recibido tu mensaje: "${mensaje}". Te responderemos pronto.`
   };
   res.json(respuesta);
+});
+
+// Ruta /frase (devuelve frase aleatoria en JSON)
+app.get('/frase', (req, res) => {
+  const fraseAleatoria = getRandomFrase();
+  res.json({ frase: fraseAleatoria });
 });
 
 // Middleware básico para manejo de errores

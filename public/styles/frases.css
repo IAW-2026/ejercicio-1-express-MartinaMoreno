@@ -1,0 +1,64 @@
+/* Estilos para la página Frases */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f7ff;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #1890ff;
+}
+
+p {
+  color: #666;
+  font-size: 1.1em;
+}
+
+button {
+  background-color: #1890ff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #40a9ff;
+}
+
+#frase-container {
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+blockquote {
+  background: #fff;
+  border-left: 5px solid #1890ff;
+  padding: 20px;
+  margin: 0;
+  font-style: italic;
+  font-size: 1.2em;
+  color: #333;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+nav {
+  margin-top: 40px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #1890ff;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
