@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servidor Express con Archivos Estáticos</title>
+    <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>¡Hola desde Express!</h1>
+        <p>Esta página se está sirviendo desde archivo .ejs</p>
+        <button id="cambiarColor">Cambiar Color</button>
+        <p id="mensaje">Haz clic en el botón para cambiar el color de fondo.</p>
+    </div>
+    <script src="/script.js"></script>
+    <p><strong>Número de visitas desde que inició el servidor:</strong> <%= contador %></p>
+    <nav>
+        <a href="/acerca">Acerca de</a> |
+        <a href="/contacto">Contacto</a> |
+        <a href="/encuesta">Encuesta</a> |
+        <a href="/mensajes">Mensajes</a>
+    </nav>
+</body>
+</html>

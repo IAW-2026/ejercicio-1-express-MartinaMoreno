@@ -1,0 +1,38 @@
+/* Estilos para la página Resultado Encuesta */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0fff0;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  color: #32cd32;
+  text-align: center;
+}
+
+p {
+  color: #333;
+  line-height: 1.6;
+  text-align: center;
+}
+
+strong {
+  color: #228b22;
+  font-size: 1.2em;
+}
+
+nav {
+  text-align: center;
+  margin-top: 20px;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}

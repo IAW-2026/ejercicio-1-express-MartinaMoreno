@@ -38,6 +38,17 @@ app.post('/contacto', (req, res) => {
   res.render('resultado', { title: 'Contacto - Enviado', nombre, mensaje });
 });
 
+// Ruta /encuesta (GET: mostrar formulario)
+app.get('/encuesta', (req, res) => {
+  res.render('encuesta', { title: 'Encuesta' });
+});
+
+// Ruta /encuesta (POST: procesar formulario)
+app.post('/encuesta', (req, res) => {
+  const { lenguaje } = req.body;
+  res.render('encuesta-resultado', { title: 'Resultado Encuesta', lenguaje });
+});
+
 // Middleware básico para manejo de errores
 app.use((err, req, res, next) => {
   console.error(err.stack);
