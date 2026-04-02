@@ -2,6 +2,9 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+// Variable en memoria para el contador de visitas
+let contador = 0;
+
 // Motor de vistas (EJS)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -14,9 +17,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Ruta raíz
-//app.get('/', (req, res) => {
-//  res.render('index', { title: 'Página Principal' });
-//});
+app.get('/', (req, res) => {
+  contador++;
+  res.render('index', { title: 'Página Principal', contador });
+});
 
 // Ruta /acerca
 app.get('/acerca', (req, res) => {
